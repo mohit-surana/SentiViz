@@ -11,7 +11,7 @@ def index(request):
 
 def display(request):
 	BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-	STATIC_URL = '/senti_viz/static/'
-	STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+	STATIC_URL = '/static/'
+	# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 	context = {'param': 'value', 'STATIC_URL': STATIC_URL}
 	return render(request, 'senti_viz/home.html', context)
