@@ -1,0 +1,14 @@
+<div class="container col-xs-12">
+	<table class="table table-hover col-xs-12">
+		<tr>
+			<th class="col-xs-6"><center><span class="list-group-item list-group-item-success glyphicon glyphicon-plus" /></center></th>
+			<th class="col-xs-6"><center><span class="list-group-item list-group-item-danger glyphicon glyphicon-remove" /></center></th>
+		</tr>
+		{% for tweet in results %}
+		<tr>
+			<td class="tweet"><span>{{ tweet }}</span></td>
+			<td class="tweet"><span>{{ tweet }}</span></td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>

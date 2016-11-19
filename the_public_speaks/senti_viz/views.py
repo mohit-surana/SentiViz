@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from fetch_tweets import fetch
+
 import os
 
 def index(request):
@@ -15,3 +17,11 @@ def display(request):
 	# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 	context = {'param': 'value', 'STATIC_URL': STATIC_URL}
 	return render(request, 'senti_viz/home.html', context)
+
+def search(request, query):
+	results = fetch(query)
+	print(results)
+	if('error' in results or not results):
+ 		return HttpResponse('Yen illa boss!')
+	else:
+		return render(request, 'senti_viz/results.html', results)
