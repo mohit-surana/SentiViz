@@ -5,11 +5,11 @@
 		{% load static %}
 
 		<!-- TODO: Link them with the server side versions instead of the online versions -->
-		<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
-		<link href="{{ STATIC_URL }}css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
 		<script src="{{ STATIC_URL }}js/jquery-3.1.1.min.js"></script>
-		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+		<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
 
 		<!--
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -20,10 +20,28 @@
 
 	</head>
 	<body>
-			<div>
-				{{ param }}
-				{{ STATIC_ROOT }}
-				{{ STATIC_URL }}
+		<div class="container">
+			<img src="{{ STATIC_URL }}img/twitter.png" height="100px" width="100px"/>
+			<div class="row">
+				<h2>Tweet Sentiment Visualizer</h2>
 			</div>
+			<div class="input-group col-md-12">
+				<input type="text" class="search-query form-control" placeholder="Search for a tweet" />
+				<span class="input-group-btn">
+					<button class="btn btn-danger" type="button">
+						<span id="search" class="glyphicon glyphicon-search"></span>
+					</button>
+				</span>
+			</div>
+		</div>
+		<hr>
+		<div class="container">
+			<table class="table table-hover">
+				<tr>
+					<th><center><span class="list-group-item list-group-item-success glyphicon glyphicon-plus" /></center></th>
+					<th><center><span class="list-group-item list-group-item-danger glyphicon glyphicon-remove" /></center></th>
+				</tr>
+			</table>
+		</div>
 	</body>
 </html>
