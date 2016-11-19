@@ -54,7 +54,9 @@ ROOT_URLCONF = 'the_public_speaks.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+			'senti_viz/templates'
+		],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
