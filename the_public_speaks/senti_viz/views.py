@@ -1,11 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
-
 from django.http import HttpResponse
-
 from fetch_tweets import fetch
 
+from keras.models import load_model
+
+import lstm
+from lstm import *
+import pickle
 import os
 
 def index(request):
@@ -20,8 +21,12 @@ def display(request):
 
 def search(request, query):
 	results = fetch(query)
-	print(results)
 	if('error' in results or not results):
- 		return HttpResponse('Yen illa boss!')
+ 		return HttpResponse('No results found.')
 	else:
-		return render(request, 'senti_viz/results.html', results)
+		model = load_model('senti_viz/lstm_model.h5')
+		model.predict = BinarizedSentimentAnalyzer().predict
+		predictions = model.predict(results['results'])
+		# print predictions
+		# print {'pos_predictions': predictions[1], 'neg_predictions': predictions[0]}
+		return render(request, 'senti_viz/results.html', {'pos_predictions': predictions[1], 'neg_predictions': predictions[0]})

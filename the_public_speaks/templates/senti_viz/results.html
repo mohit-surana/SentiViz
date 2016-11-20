@@ -4,11 +4,21 @@
 			<th class="col-xs-6"><center><span class="list-group-item list-group-item-success glyphicon glyphicon-plus" /></center></th>
 			<th class="col-xs-6"><center><span class="list-group-item list-group-item-danger glyphicon glyphicon-remove" /></center></th>
 		</tr>
-		{% for tweet in results %}
 		<tr>
-			<td class="tweet"><span>{{ tweet }}</span></td>
-			<td class="tweet"><span>{{ tweet }}</span></td>
+			<td class="tweet">
+				<ol>
+				{% for tweet in pos_predictions %}
+					<li>{{ tweet }}</li>
+				{% endfor %}
+				</ol>
+			</td>
+			<td class="tweet">
+				<ol>
+				{% for tweet in neg_predictions %}
+					<li>{{ tweet }}</li>
+				{% endfor %}
+				</ol>
+			</td>
 		</tr>
-		{% endfor %}
 	</table>
 </div>
