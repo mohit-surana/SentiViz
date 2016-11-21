@@ -9,6 +9,9 @@ from lstm import *
 import pickle
 import os
 
+import pytagcloud.test.tagcloud as tagCloud
+
+
 def index(request):
 	return HttpResponse("Hello, world. You're at the SentiViz index.")
 
@@ -27,6 +30,10 @@ def search(request, query):
 		model = load_model('senti_viz/lstm_model.h5')
 		model.predict = BinarizedSentimentAnalyzer().predict
 		predictions = model.predict(results['results'])
-		# print predictions
-		# print {'pos_predictions': predictions[1], 'neg_predictions': predictions[0]}
-		return render(request, 'senti_viz/results.html', {'pos_predictions': predictions[1], 'neg_predictions': predictions[0]})
+		try:
+			tagCloud.create_tags(' '.join(predictions[0]), 'positive')
+			tagCloud.create_tags(' '.join(predictions[1]), 'negative')
+		except Exception as e:
+			print(e)
+			pass
+		return render(request, 'senti_viz/results.html', {'STATIC_URL': '/static/', 'pos_predictions': predictions[0], 'neg_predictions': predictions[1]})
