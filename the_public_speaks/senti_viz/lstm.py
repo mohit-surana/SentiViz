@@ -47,6 +47,7 @@ def sent_to_w2v(sentence):
 
 	if not __model:
 		__model = Word2Vec.load('senti_viz/w2v.pkl')
+		print 'Loaded w2v.pkl'
 
 	word_list = sentence.split(" ")
 	w2v_list = []
